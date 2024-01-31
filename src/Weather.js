@@ -10,7 +10,10 @@ export default function Weather() {
   function showTemperature(response) {
     // console.log(response);
 
-    if (response.data.message === "City not found") {
+    if (
+      response.data.message === "City not found" ||
+      response.data.city === ""
+    ) {
       setWeatherCondition({
         message: response.data.message,
       });
@@ -59,13 +62,21 @@ export default function Weather() {
         </form>
 
         <p>
-          Weather in {weatherCondition.city} {weatherCondition.country}
+          Weather in{" "}
+          <strong>
+            {weatherCondition.city} {weatherCondition.country}
+          </strong>
         </p>
 
         <p>
           {" "}
-          <strong>Temperature </strong>
-          is {Math.round(weatherCondition.temperature)}°C
+          Temperature is{" "}
+          <strong>
+            {weatherCondition.city
+              ? Math.round(weatherCondition.temperature)
+              : 0}
+            °C
+          </strong>
         </p>
         <p>
           Description:<strong>{weatherCondition.description}</strong>
@@ -79,7 +90,7 @@ export default function Weather() {
         <img src={weatherCondition.icon} alt="Weather Icon" />
       </>
     );
-  } else {
+  }else {
     return (
       <>
         <form onSubmit={handleSubmit}>

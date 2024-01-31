@@ -5,7 +5,7 @@ function App() {
   let date = new Date();
   let year = date.getFullYear();
   return (
-    <div className="App">
+    <div className="container">
       <h1>Weather App</h1>
       <Weather />
       <br />
