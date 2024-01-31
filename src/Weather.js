@@ -44,7 +44,7 @@ export default function Weather() {
     setCity(e.target.value);
   }
 
-  if (!weatherCondition.message) {
+  if (!weatherCondition.message && weatherCondition.city) {
     return (
       <>
         <form onSubmit={handleSubmit}>
@@ -62,10 +62,8 @@ export default function Weather() {
         </form>
 
         <p>
-          Weather in{" "}
-          <strong>
-            {weatherCondition.city} {weatherCondition.country}
-          </strong>
+          Weather in <strong>{weatherCondition.city}</strong> {" "}
+          {weatherCondition.country}
         </p>
 
         <p>
@@ -90,7 +88,7 @@ export default function Weather() {
         <img src={weatherCondition.icon} alt="Weather Icon" />
       </>
     );
-  }else {
+  } else {
     return (
       <>
         <form onSubmit={handleSubmit}>
@@ -109,7 +107,7 @@ export default function Weather() {
         <h3 className="text">
           {weatherCondition.message}
           <br />
-          <strong className="text"> Please enter a valid city</strong>
+          <strong className="text"> Please enter a city</strong>
         </h3>
       </>
     );
